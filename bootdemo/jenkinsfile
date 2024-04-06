@@ -11,11 +11,18 @@ stage('Clean Workspace') {
         cleanWs()
     }
 }
-    stage('Checkout SCM') {
-      steps {
-        checkout scm
-      }
-    }
+      stage('Checkout SCM') {
+            steps {
+                // Checkout only the 'bootdemo' project
+                checkout([$class: 'GitSCM',
+                          branches: [[name: 'main']], // Specify the branch to checkout
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [[$class: 'CleanCheckout'],
+                                       [$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'bootdemo']]]], // Specify the path to 'bootdemo'
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[url: 'https://github.com/sakthivel94/Spring-Boot.git']]])
+            }
+        }
 
     stage('Build') {
       steps {
