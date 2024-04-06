@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage ('Build') {
       steps {
-        bat 'mvn clean install -Dmaven.test.skip package'
+        bat 'mvn clean -Dmaven.test.skip package'
       }
     }
     stage ('Run') {
