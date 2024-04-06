@@ -27,7 +27,7 @@ pipeline {
       }
       steps {
         script {
-          def jarFilePath = 'C:/ProgramData/Jenkins/.jenkins/workspace/college/student/bootdemo/target/demo-0.0.1-SNAPSHOT.jar'
+          def jarFilePath = 'C:/ProgramData/Jenkins/.jenkins/workspace/college/student/bootdemo/target/bootdemo-0.0.1-SNAPSHOT.jar'
           def batchScript = "cmd /c \"java -jar ${jarFilePath}\""
           bat label: 'Run JAR in Background', script: batchScript
         }
