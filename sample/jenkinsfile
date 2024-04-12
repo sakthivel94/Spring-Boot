@@ -27,7 +27,7 @@ stage('Clean Workspace') {
     stage('Build') {
       steps {
         dir('C:/ProgramData/Jenkins/.jenkins/workspace/college/sample/sample') {
-          bat 'mvn clean -Dmaven.test.skip package'
+          bat 'mvn clean install'
         }
       }
     }
@@ -39,7 +39,7 @@ stage('Clean Workspace') {
       }
       steps {
         withSonarQubeEnv('sonarserver') { 
-          bat 'sonar-scanner'
+          bat 'mvn sonar:sonar'
         }
       }
     }
