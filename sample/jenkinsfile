@@ -38,9 +38,11 @@ stage('Clean Workspace') {
         PATH = "${env.PATH}:${SONAR_SCANNER_HOME}/bin"
       }
       steps {
+dir('C:/ProgramData/Jenkins/.jenkins/workspace/college/sample/sample') {
         withSonarQubeEnv('sonarserver') { 
           bat 'mvn sonar:sonar'
         }
+    }
       }
     }
 
