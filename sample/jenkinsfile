@@ -32,6 +32,18 @@ stage('Clean Workspace') {
       }
     }
 
+  stage('SonarQube Analysis') {
+      environment {
+        SONAR_SCANNER_HOME = tool 'sonar-scanner' // Define SonarQube scanner tool
+        PATH = "${env.PATH}:${SONAR_SCANNER_HOME}/bin"
+      }
+      steps {
+        withSonarQubeEnv('sonarserver') { 
+          bat 'sonar-scanner'
+        }
+      }
+    }
+
     stage('Run') {
       environment {
        JAVA_HOME = 'C:\\Program Files\\Java\\jdk-17'
